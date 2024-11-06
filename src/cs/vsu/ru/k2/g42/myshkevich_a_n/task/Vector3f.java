@@ -20,6 +20,10 @@ public class Vector3f {
 		return new Vector3f(x, y, z);
 	}
 
+	public float[] getCoords() {
+		return new float[] { this.x, this.y, this.z };
+	}
+
 	public void printVec() {
 		System.out.println(x + " " + y + " " + z);
 	}
