@@ -14,13 +14,12 @@ import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Model;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Polygon;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Vector3f;
 
-class PolygonNormalsTest {
+class VertexNormalsTest {
 	private static ArrayList<Vector3f> temporaryNormals = new ArrayList<>();
+	private static Model m = new Model();
 
 	@BeforeAll
 	static void init() {
-		Model m = new Model();
-
 		m.vertices.add(new Vector3f(-1, -1, 1));
 		m.vertices.add(new Vector3f(-1, 1, 1));
 		m.vertices.add(new Vector3f(-1, -1, -1));
@@ -46,44 +45,39 @@ class PolygonNormalsTest {
 		for (int i = 0; i < m.vertices.size(); i++) {
 			List<Vector3f> polygonNormalsList = new ArrayList<>();
 			for (int j = 0; j < m.polygons.size(); j++) {
-				if (m.polygons.get(j).getVertexIndices().contains(i)) {
+				if (m.polygons.get(j).getVertexIndices().contains(i + 1)) {
 					polygonNormalsList.add(temporaryNormals.get(j));
 				}
 			}
 			m.normals.add(FindNormals.findVertexNormals(polygonNormalsList));
 		}
+
+		for (Vector3f v : m.normals) {
+			v.printVec();
+		}
 	}
 
 	@Test
-	void polygonNormalsCubeTest1() {
+	void polynomCountTest() {
+		List<Vector3f> polygonNormalsList = new ArrayList<>();
+		for (int j = 0; j < m.polygons.size(); j++) {
+			if (m.polygons.get(j).getVertexIndices().contains(1)) {
+				polygonNormalsList.add(temporaryNormals.get(j));
+			}
+		}
+
+		assertEquals(polygonNormalsList.size(), 3);
+	}
+
+	@Test
+	void findVertexTest() {
+		List<Vector3f> v = Arrays.asList(new Vector3f(-1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, -1, 0));
+		assertEquals(Math.round(FindNormals.findVertexNormals(v).getCoords()[0] * 100), -58);
 	}
 	
 	@Test
-	void polygonNormalsCubeTest2() {
-		assertEquals(temporaryNormals.get(2).getCoords()[0], 1.0);
-		assertEquals(temporaryNormals.get(2).getCoords()[1], 0.0);
-		assertEquals(temporaryNormals.get(2).getCoords()[2], 0.0);
-	}
-	
-	@Test
-	void polygonNormalsCubeTest3() {
-		assertEquals(temporaryNormals.get(3).getCoords()[0], 0.0);
-		assertEquals(temporaryNormals.get(3).getCoords()[1], 0.0);
-		assertEquals(temporaryNormals.get(3).getCoords()[2], 1.0);
-	}
-	
-	@Test
-	void polygonNormalsCubeTest4() {
-		assertEquals(temporaryNormals.get(4).getCoords()[0], -0.0);
-		assertEquals(temporaryNormals.get(4).getCoords()[1], -1.0);
-		assertEquals(temporaryNormals.get(4).getCoords()[2], 0.0);
-	}
-	
-	@Test
-	void polygonNormalsCubeTest5() {
-		assertEquals(temporaryNormals.get(5).getCoords()[0], -0.0);
-		assertEquals(temporaryNormals.get(5).getCoords()[1], 1.0);
-		assertEquals(temporaryNormals.get(5).getCoords()[2], 0.0);
+	void normalizeTest() {
+		assertEquals(Math.round(FindNormals.normalize(new Vector3f(0.33f, 0.33f, 0.33f)).getCoords()[0] * 100), 58);
 	}
 
 }
