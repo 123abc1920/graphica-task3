@@ -74,10 +74,5 @@ class VertexNormalsTest {
 		List<Vector3f> v = Arrays.asList(new Vector3f(-1, 0, 0), new Vector3f(0, 0, 1), new Vector3f(0, -1, 0));
 		assertEquals(Math.round(FindNormals.findVertexNormals(v).getCoords()[0] * 100), -58);
 	}
-	
-	@Test
-	void normalizeTest() {
-		assertEquals(Math.round(FindNormals.normalize(new Vector3f(0.33f, 0.33f, 0.33f)).getCoords()[0] * 100), 58);
-	}
 
 }

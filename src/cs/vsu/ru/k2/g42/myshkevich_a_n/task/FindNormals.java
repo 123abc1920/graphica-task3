@@ -7,7 +7,12 @@ public class FindNormals {
 		Vector3f a = vs[0].substract(vs[1]);
 		Vector3f b = vs[0].substract(vs[2]);
 
-		return normalize(vectorProduct(a, b));
+		Vector3f c = vectorProduct(a, b);
+		if (determinant(a, b, c) < 0) {
+			c = vectorProduct(b, a);
+		}
+
+		return normalize(c);
 	}
 
 	public static Vector3f findVertexNormals(List<Vector3f> vs) {
@@ -26,8 +31,20 @@ public class FindNormals {
 		return normalize(new Vector3f(xs, ys, zs));
 	}
 
+	public static double determinant(Vector3f a, Vector3f b, Vector3f c) {
+		return a.x * (b.y * c.z) - a.y * (b.x * c.z - c.x * b.z) + a.z * (b.x * c.y - c.x * b.y);
+	}
+
 	public static Vector3f normalize(Vector3f v) {
+		if (v == null) {
+			return null;
+		}
+
 		double length = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+
+		if (length == 0) {
+			return new Vector3f(0, 0, 0);
+		}
 
 		v.x /= length;
 		v.y /= length;
