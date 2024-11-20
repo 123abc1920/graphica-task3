@@ -9,6 +9,9 @@ public class Polygon {
 	private ArrayList<Integer> textureVertexIndices;
 	private ArrayList<Integer> normalIndices;
 
+	public Polygon() {
+	}
+
 	public Polygon(List<Integer> a) {
 		vertexIndices = new ArrayList<Integer>();
 		for (Integer i : a) {

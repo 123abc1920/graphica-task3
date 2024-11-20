@@ -7,4 +7,12 @@ public class Vector2f {
 	}
 
 	float x, y;
+	
+	public float getX() {
+		return x;
+	}
+	
+	public float getY() {
+		return y;
+	}
 }
