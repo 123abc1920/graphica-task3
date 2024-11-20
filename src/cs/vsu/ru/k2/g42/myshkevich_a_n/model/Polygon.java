@@ -1,4 +1,4 @@
-package cs.vsu.ru.k2.g42.myshkevich_a_n.task;
+package cs.vsu.ru.k2.g42.myshkevich_a_n.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package cs.vsu.ru.k2.g42.myshkevich_a_n.task;
+package cs.vsu.ru.k2.g42.myshkevich_a_n.Math;
 
 public class Vector2f {
 	public Vector2f(float x, float y) {

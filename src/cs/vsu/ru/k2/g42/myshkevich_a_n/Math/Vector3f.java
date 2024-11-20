@@ -1,4 +1,4 @@
-package cs.vsu.ru.k2.g42.myshkevich_a_n.task;
+package cs.vsu.ru.k2.g42.myshkevich_a_n.Math;
 
 public class Vector3f {
 	public Vector3f(float x, float y, float z) {
@@ -29,4 +29,28 @@ public class Vector3f {
 	}
 
 	float x, y, z;
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public float getZ() {
+		return z;
+	}
+
+	public void setX(float d) {
+		this.x = (float)d;
+	}
+
+	public void setY(float y) {
+		this.y = (float)y;
+	}
+
+	public void setZ(float z) {
+		this.z = (float)z;
+	}
 }

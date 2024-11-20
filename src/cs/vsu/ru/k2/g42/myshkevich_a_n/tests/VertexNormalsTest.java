@@ -9,10 +9,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.FindNormals;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Model;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Polygon;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Model;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Polygon;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.normal.FindNormals;
 
 class VertexNormalsTest {
 	private static ArrayList<Vector3f> temporaryNormals = new ArrayList<>();

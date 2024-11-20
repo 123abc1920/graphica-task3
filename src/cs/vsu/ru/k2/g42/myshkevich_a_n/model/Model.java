@@ -1,6 +1,9 @@
-package cs.vsu.ru.k2.g42.myshkevich_a_n.task;
+package cs.vsu.ru.k2.g42.myshkevich_a_n.model;
 
 import java.util.ArrayList;
+
+import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector2f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
 
 public class Model {
 	public ArrayList<Vector3f> vertices = new ArrayList<Vector3f>();

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.FindNormals;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.task.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.normal.FindNormals;
 
 class AnotherTests {
 

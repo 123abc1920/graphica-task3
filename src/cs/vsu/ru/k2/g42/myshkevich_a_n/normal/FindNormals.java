@@ -1,6 +1,8 @@
-package cs.vsu.ru.k2.g42.myshkevich_a_n.task;
+package cs.vsu.ru.k2.g42.myshkevich_a_n.normal;
 
 import java.util.List;
+
+import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
 
 public class FindNormals {
 	public static Vector3f findPolygonsNormals(Vector3f... vs) {
@@ -19,9 +21,9 @@ public class FindNormals {
 		float xs = 0, ys = 0, zs = 0;
 
 		for (Vector3f v : vs) {
-			xs += v.x;
-			ys += v.y;
-			zs += v.z;
+			xs += v.getX();
+			ys += v.getY();
+			zs += v.getZ();
 		}
 
 		xs /= vs.size();
@@ -32,7 +34,8 @@ public class FindNormals {
 	}
 
 	public static double determinant(Vector3f a, Vector3f b, Vector3f c) {
-		return a.x * (b.y * c.z) - a.y * (b.x * c.z - c.x * b.z) + a.z * (b.x * c.y - c.x * b.y);
+		return a.getX() * (b.getY() * c.getZ()) - a.getY() * (b.getX() * c.getZ() - c.getX() * b.getZ())
+				+ a.getZ() * (b.getX() * c.getY() - c.getX() * b.getY());
 	}
 
 	public static Vector3f normalize(Vector3f v) {
@@ -40,20 +43,21 @@ public class FindNormals {
 			return null;
 		}
 
-		double length = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+		double length = Math.sqrt(v.getX() * v.getX() + v.getY() * v.getY() + v.getZ() * v.getZ());
 
 		if (length == 0) {
 			return new Vector3f(0, 0, 0);
 		}
 
-		v.x /= length;
-		v.y /= length;
-		v.z /= length;
+		v.setX((float) (v.getX() / length));
+		v.setY((float) (v.getY() / length));
+		v.setZ((float) (v.getZ() / length));
 
-		return new Vector3f(v.x, v.y, v.z);
+		return new Vector3f(v.getX(), v.getY(), v.getZ());
 	}
 
 	public static Vector3f vectorProduct(Vector3f a, Vector3f b) {
-		return new Vector3f(a.y * b.z - b.y * a.z, -a.x * b.z + b.x * a.z, a.x * b.y - b.x * a.y);
+		return new Vector3f(a.getY() * b.getZ() - b.getY() * a.getZ(), -a.getX() * b.getZ() + b.getX() * a.getZ(),
+				a.getX() * b.getY() - b.getX() * a.getY());
 	}
 }
