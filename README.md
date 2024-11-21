@@ -1,6 +1,6 @@
 **Нахождение нормалей**
 
-__<u>Все необходимое для поиска находится в cs.vsu.ru.k2.g42.myshkevich_a_n.normal.FindNormals</u>__
+__*Все необходимое для поиска находится в cs.vsu.ru.k2.g42.myshkevich_a_n.normal.FindNormals*__
 
 ***
 
@@ -21,4 +21,4 @@ __<u>Все необходимое для поиска находится в cs.
 
 ***
 
-Тесты находятся в cs.vsu.ru.k2.g42.myshkevich_a_n.tests.PolygonNormalsTest и cs.vsu.ru.k2.g42.myshkevich_a_n.tests.VertexNormalsTest.
+**Тесты** находятся в cs.vsu.ru.k2.g42.myshkevich_a_n.tests.PolygonNormalsTest и cs.vsu.ru.k2.g42.myshkevich_a_n.tests.VertexNormalsTest.
