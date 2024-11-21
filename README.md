@@ -5,10 +5,9 @@ __<u>Все необходимое для поиска находится в cs.
 ***
 
 1. __ArrayList<Vector3f> findNormals(List<Polygon> polygons, List<Vector3f> vertices) -- polygons -- массив полигонов модели. vertices -- массив вершин модели. Возвращает массив нормалей вершин модели. Остальные методы знать необязательно. Пример:__
-
-''' 
-model.normals = FindNormals.findNormals(model.polygons, model.vertices);
-'''
+	``` 
+	model.normals = FindNormals.findNormals(model.polygons, model.vertices);
+	```
 
 1. Vector3f findPolygonsNormals(Vector3f... vs) -- получает 3 вершины полигона, возвращает нормаль полигона.
 
