@@ -60,30 +60,30 @@ class PolygonNormalsTest {
 	
 	@Test
 	void polygonNormalsCubeTest2() {
-		assertEquals(temporaryNormals.get(2).getCoords()[0], 1.0);
-		assertEquals(temporaryNormals.get(2).getCoords()[1], 0.0);
-		assertEquals(temporaryNormals.get(2).getCoords()[2], 0.0);
+		assertEquals(temporaryNormals.get(2).x, 1.0);
+		assertEquals(temporaryNormals.get(2).y, 0.0);
+		assertEquals(temporaryNormals.get(2).z, 0.0);
 	}
 	
 	@Test
 	void polygonNormalsCubeTest3() {
-		assertEquals(temporaryNormals.get(3).getCoords()[0], 0.0);
-		assertEquals(temporaryNormals.get(3).getCoords()[1], 0.0);
-		assertEquals(temporaryNormals.get(3).getCoords()[2], 1.0);
+		assertEquals(temporaryNormals.get(3).x, 0.0);
+		assertEquals(temporaryNormals.get(3).y, 0.0);
+		assertEquals(temporaryNormals.get(3).z, 1.0);
 	}
 	
 	@Test
 	void polygonNormalsCubeTest4() {
-		assertEquals(temporaryNormals.get(4).getCoords()[0], -0.0);
-		assertEquals(temporaryNormals.get(4).getCoords()[1], -1.0);
-		assertEquals(temporaryNormals.get(4).getCoords()[2], 0.0);
+		assertEquals(temporaryNormals.get(4).x, -0.0);
+		assertEquals(temporaryNormals.get(4).y, -1.0);
+		assertEquals(temporaryNormals.get(4).z, 0.0);
 	}
 	
 	@Test
 	void polygonNormalsCubeTest5() {
-		assertEquals(temporaryNormals.get(5).getCoords()[0], -0.0);
-		assertEquals(temporaryNormals.get(5).getCoords()[1], 1.0);
-		assertEquals(temporaryNormals.get(5).getCoords()[2], 0.0);
+		assertEquals(temporaryNormals.get(5).x, -0.0);
+		assertEquals(temporaryNormals.get(5).y, 1.0);
+		assertEquals(temporaryNormals.get(5).z, 0.0);
 	}
 
 }

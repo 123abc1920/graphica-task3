@@ -34,7 +34,7 @@ class ObjReaderWriterTest {
 	void test1() {
 		for (int i = 0; i < m.vertices.size(); i++) {
 			System.out.println(
-					m.vertices.get(i).getX() + " " + m.vertices.get(i).getY() + " " + m.vertices.get(i).getZ());
+					m.vertices.get(i).x + " " + m.vertices.get(i).y + " " + m.vertices.get(i).z);
 		}
 	}
 

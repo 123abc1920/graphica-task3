@@ -1,13 +1,37 @@
 package cs.vsu.ru.k2.g42.myshkevich_a_n.normal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Polygon;
 
 public class FindNormals {
+	public static ArrayList<Vector3f> findNormals(List<Polygon> polygons, List<Vector3f> vertices) {
+		ArrayList<Vector3f> temporaryNormals = new ArrayList<>();
+		ArrayList<Vector3f> normals = new ArrayList<>();
+
+		for (Polygon p : polygons) {
+			temporaryNormals.add(FindNormals.findPolygonsNormals(vertices.get(p.getVertexIndices().get(0)),
+					vertices.get(p.getVertexIndices().get(1)), vertices.get(p.getVertexIndices().get(2))));
+		}
+
+		for (int i = 0; i < vertices.size(); i++) {
+			List<Vector3f> polygonNormalsList = new ArrayList<>();
+			for (int j = 0; j < polygons.size(); j++) {
+				if (polygons.get(j).getVertexIndices().contains(i)) {
+					polygonNormalsList.add(temporaryNormals.get(j));
+				}
+			}
+			normals.add(FindNormals.findVertexNormals(polygonNormalsList));
+		}
+
+		return normals;
+	}
+
 	public static Vector3f findPolygonsNormals(Vector3f... vs) {
-		Vector3f a = vs[0].substract(vs[1]);
-		Vector3f b = vs[0].substract(vs[2]);
+		Vector3f a = Vector3f.subtraction(vs[0], vs[1]);
+		Vector3f b = Vector3f.subtraction(vs[0], vs[2]);
 
 		Vector3f c = vectorProduct(a, b);
 		if (determinant(a, b, c) < 0) {
@@ -21,9 +45,9 @@ public class FindNormals {
 		float xs = 0, ys = 0, zs = 0;
 
 		for (Vector3f v : vs) {
-			xs += v.getX();
-			ys += v.getY();
-			zs += v.getZ();
+			xs += v.x;
+			ys += v.y;
+			zs += v.z;
 		}
 
 		xs /= vs.size();
@@ -34,8 +58,7 @@ public class FindNormals {
 	}
 
 	public static double determinant(Vector3f a, Vector3f b, Vector3f c) {
-		return a.getX() * (b.getY() * c.getZ()) - a.getY() * (b.getX() * c.getZ() - c.getX() * b.getZ())
-				+ a.getZ() * (b.getX() * c.getY() - c.getX() * b.getY());
+		return a.x * (b.y * c.z) - a.y * (b.x * c.z - c.x * b.z) + a.z * (b.x * c.y - c.x * b.y);
 	}
 
 	public static Vector3f normalize(Vector3f v) {
@@ -43,21 +66,20 @@ public class FindNormals {
 			return null;
 		}
 
-		double length = Math.sqrt(v.getX() * v.getX() + v.getY() * v.getY() + v.getZ() * v.getZ());
+		double length = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 
 		if (length == 0) {
 			return new Vector3f(0, 0, 0);
 		}
 
-		v.setX((float) (v.getX() / length));
-		v.setY((float) (v.getY() / length));
-		v.setZ((float) (v.getZ() / length));
+		v.x /= length;
+		v.y /= length;
+		v.z /= length;
 
-		return new Vector3f(v.getX(), v.getY(), v.getZ());
+		return new Vector3f(v.x, v.y, v.z);
 	}
 
 	public static Vector3f vectorProduct(Vector3f a, Vector3f b) {
-		return new Vector3f(a.getY() * b.getZ() - b.getY() * a.getZ(), -a.getX() * b.getZ() + b.getX() * a.getZ(),
-				a.getX() * b.getY() - b.getX() * a.getY());
+		return new Vector3f(a.y * b.z - b.y * a.z, -a.x * b.z + b.x * a.z, a.x * b.y - b.x * a.y);
 	}
 }
