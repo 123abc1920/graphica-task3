@@ -53,9 +53,19 @@ class PolygonNormalsTest {
 			m.normals.add(FindNormals.findVertexNormals(polygonNormalsList));
 		}
 	}
+	
+	@Test
+	void polygonNormalsCubeTest0() {
+		assertEquals(temporaryNormals.get(0).x, -1.0);
+		assertEquals(temporaryNormals.get(0).y, 0.0);
+		assertEquals(temporaryNormals.get(0).z, 0.0);
+	}
 
 	@Test
 	void polygonNormalsCubeTest1() {
+		assertEquals(temporaryNormals.get(1).x, 0.0);
+		assertEquals(temporaryNormals.get(1).y, -0.0);
+		assertEquals(temporaryNormals.get(1).z, -1.0);
 	}
 	
 	@Test

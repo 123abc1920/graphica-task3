@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
+import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Model;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Polygon;
 
 public class FindNormals {
-	public static ArrayList<Vector3f> findNormals(List<Polygon> polygons, List<Vector3f> vertices) {
+	public static ArrayList<Vector3f> findNormals(Model m) {
+		List<Polygon> polygons = m.polygons;
+		List<Vector3f> vertices = m.vertices;
+
 		ArrayList<Vector3f> temporaryNormals = new ArrayList<>();
 		ArrayList<Vector3f> normals = new ArrayList<>();
+		
 
 		for (Polygon p : polygons) {
 			temporaryNormals.add(FindNormals.findPolygonsNormals(vertices.get(p.getVertexIndices().get(0)),

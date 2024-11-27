@@ -38,7 +38,7 @@ class VertexNormalsTest {
 
 	@BeforeAll
 	static void init() {
-		m.normals = FindNormals.findNormals(m.polygons, m.vertices);
+		m.normals = FindNormals.findNormals(m);
 	}
 
 	@ParameterizedTest
