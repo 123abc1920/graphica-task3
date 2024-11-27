@@ -1,7 +1,9 @@
 package cs.vsu.ru.k2.g42.myshkevich_a_n.normal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Model;
@@ -14,21 +16,25 @@ public class FindNormals {
 
 		ArrayList<Vector3f> temporaryNormals = new ArrayList<>();
 		ArrayList<Vector3f> normals = new ArrayList<>();
-		
 
 		for (Polygon p : polygons) {
 			temporaryNormals.add(FindNormals.findPolygonsNormals(vertices.get(p.getVertexIndices().get(0)),
 					vertices.get(p.getVertexIndices().get(1)), vertices.get(p.getVertexIndices().get(2))));
 		}
 
-		for (int i = 0; i < vertices.size(); i++) {
-			List<Vector3f> polygonNormalsList = new ArrayList<>();
-			for (int j = 0; j < polygons.size(); j++) {
-				if (polygons.get(j).getVertexIndices().contains(i)) {
-					polygonNormalsList.add(temporaryNormals.get(j));
+		Map<Integer, List<Vector3f>> vertexPolygonsMap = new HashMap<>();
+		for (int j = 0; j < polygons.size(); j++) {
+			List<Integer> vertexIndices = polygons.get(j).getVertexIndices();
+			for (Integer index : vertexIndices) {
+				if (!vertexPolygonsMap.containsKey(index)) {
+					vertexPolygonsMap.put(index, new ArrayList<>());
 				}
+				vertexPolygonsMap.get(index).add(temporaryNormals.get(j));
 			}
-			normals.add(FindNormals.findVertexNormals(polygonNormalsList));
+		}
+
+		for (int i = 0; i < vertices.size(); i++) {
+			normals.add(findVertexNormals(vertexPolygonsMap.get(i)));
 		}
 
 		return normals;
