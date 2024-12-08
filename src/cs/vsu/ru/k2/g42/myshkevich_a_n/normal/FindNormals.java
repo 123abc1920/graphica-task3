@@ -2,8 +2,10 @@ package cs.vsu.ru.k2.g42.myshkevich_a_n.normal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Model;
@@ -22,21 +24,19 @@ public class FindNormals {
 					vertices.get(p.getVertexIndices().get(1)), vertices.get(p.getVertexIndices().get(2))));
 		}
 
-		Map<Integer, List<Vector3f>> vertexPolygonsMap = new HashMap<>();
+		Map<Integer, Set<Vector3f>> vertexPolygonsMap = new HashMap<>();
 		for (int j = 0; j < polygons.size(); j++) {
 			List<Integer> vertexIndices = polygons.get(j).getVertexIndices();
+			Vector3f vec = temporaryNormals.get(j);
 			for (Integer index : vertexIndices) {
-				if (!vertexPolygonsMap.containsKey(index)) {
-					vertexPolygonsMap.put(index, new ArrayList<>());
-				}
-				vertexPolygonsMap.get(index).add(temporaryNormals.get(j));
-			}
+		        vertexPolygonsMap.computeIfAbsent(index, k -> new HashSet<>()).add(vec);
+		    }
 		}
 
 		for (int i = 0; i < vertices.size(); i++) {
 			normals.add(findVertexNormals(vertexPolygonsMap.get(i)));
 		}
-
+		
 		return normals;
 	}
 
@@ -52,7 +52,7 @@ public class FindNormals {
 		return normalize(c);
 	}
 
-	public static Vector3f findVertexNormals(List<Vector3f> vs) {
+	public static Vector3f findVertexNormals(Set<Vector3f> vs) {
 		float xs = 0, ys = 0, zs = 0;
 
 		for (Vector3f v : vs) {

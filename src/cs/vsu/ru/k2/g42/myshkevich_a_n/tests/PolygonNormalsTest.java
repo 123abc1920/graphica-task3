@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -44,7 +46,7 @@ class PolygonNormalsTest {
 		}
 
 		for (int i = 0; i < m.vertices.size(); i++) {
-			List<Vector3f> polygonNormalsList = new ArrayList<>();
+			Set<Vector3f> polygonNormalsList = new HashSet<>();
 			for (int j = 0; j < m.polygons.size(); j++) {
 				if (m.polygons.get(j).getVertexIndices().contains(i)) {
 					polygonNormalsList.add(temporaryNormals.get(j));
@@ -53,7 +55,7 @@ class PolygonNormalsTest {
 			m.normals.add(FindNormals.findVertexNormals(polygonNormalsList));
 		}
 	}
-	
+
 	@Test
 	void polygonNormalsCubeTest0() {
 		assertEquals(temporaryNormals.get(0).x, -1.0);
@@ -67,28 +69,28 @@ class PolygonNormalsTest {
 		assertEquals(temporaryNormals.get(1).y, -0.0);
 		assertEquals(temporaryNormals.get(1).z, -1.0);
 	}
-	
+
 	@Test
 	void polygonNormalsCubeTest2() {
 		assertEquals(temporaryNormals.get(2).x, 1.0);
 		assertEquals(temporaryNormals.get(2).y, 0.0);
 		assertEquals(temporaryNormals.get(2).z, 0.0);
 	}
-	
+
 	@Test
 	void polygonNormalsCubeTest3() {
 		assertEquals(temporaryNormals.get(3).x, 0.0);
 		assertEquals(temporaryNormals.get(3).y, 0.0);
 		assertEquals(temporaryNormals.get(3).z, 1.0);
 	}
-	
+
 	@Test
 	void polygonNormalsCubeTest4() {
 		assertEquals(temporaryNormals.get(4).x, -0.0);
 		assertEquals(temporaryNormals.get(4).y, -1.0);
 		assertEquals(temporaryNormals.get(4).z, 0.0);
 	}
-	
+
 	@Test
 	void polygonNormalsCubeTest5() {
 		assertEquals(temporaryNormals.get(5).x, -0.0);
